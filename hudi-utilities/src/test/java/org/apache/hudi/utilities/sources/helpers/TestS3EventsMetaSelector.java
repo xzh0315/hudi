@@ -29,6 +29,7 @@ import org.apache.hudi.utilities.testutils.CloudObjectTestUtils;
 import com.amazonaws.services.sqs.AmazonSQS;
 import com.amazonaws.services.sqs.model.Message;
 import org.apache.hadoop.fs.Path;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -78,7 +79,7 @@ public class TestS3EventsMetaSelector extends HoodieClientTestHarness {
 
   @ParameterizedTest
   @ValueSource(classes = {S3EventsMetaSelector.class})
-  public void testNextEventsFromQueueShouldReturnsEventsFromQueue(Class<?> clazz) {
+  public void testNextEventsFromQueueShouldReturnsEventsFromQueue(Class<?> clazz) throws JSONException {
     S3EventsMetaSelector selector = (S3EventsMetaSelector) ReflectionUtils.loadClass(clazz.getName(), props);
     // setup s3 record
     String bucket = "test-bucket";

@@ -108,9 +108,11 @@
     <log4j.test.version>2.17.0</log4j.test.version>
     <slf4j.version>1.7.30</slf4j.version>
     <joda.version>2.9.9</joda.version>
-    <hadoop.version>2.10.1</hadoop.version>
+<!--    <hadoop.version>2.10.1</hadoop.version>-->
+    <hadoop.version>3.0.0-cdh6.2.0</hadoop.version>
     <hive.groupid>org.apache.hive</hive.groupid>
-    <hive.version>2.3.1</hive.version>
+<!--    <hive.version>2.3.1</hive.version>-->
+    <hive.version>2.1.1-cdh6.2.0</hive.version>
     <hive.exec.classifier>core</hive.exec.classifier>
     <metrics.version>4.1.1</metrics.version>
     <orc.version>1.6.0</orc.version>
@@ -119,9 +121,10 @@
     <http.version>4.4.1</http.version>
     <spark.version>${spark2.version}</spark.version>
     <spark2.version>2.4.4</spark2.version>
+<!--    <spark2.version>2.4.0-cdh6.2.0</spark2.version>-->
     <spark3.version>3.2.1</spark3.version>
     <sparkbundle.version></sparkbundle.version>
-    <flink1.14.version>1.14.4</flink1.14.version>
+    <flink1.14.version>1.14.5</flink1.14.version>
     <flink1.13.version>1.13.6</flink1.13.version>
     <flink.version>${flink1.14.version}</flink.version>
     <hudi.flink.module>hudi-flink1.14.x</hudi.flink.module>
@@ -138,8 +141,10 @@
     <caffeine.version>2.9.1</caffeine.version>
     <scala11.version>2.11.12</scala11.version>
     <scala12.version>2.12.10</scala12.version>
+<!--    <scala.version>${scala12.version}</scala.version>-->
     <scala.version>${scala11.version}</scala.version>
     <scala.binary.version>2.11</scala.binary.version>
+<!--    <scala.binary.version>2.12</scala.binary.version>-->
     <apache-rat-plugin.version>0.13</apache-rat-plugin.version>
     <scala-maven-plugin.version>3.3.1</scala-maven-plugin.version>
     <scalatest.version>3.0.1</scalatest.version>
@@ -872,6 +877,10 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
           </exclusion>
+          <exclusion>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.el</artifactId>
+          </exclusion>
         </exclusions>
       </dependency>
       <dependency>
@@ -911,6 +920,10 @@
           <exclusion>
             <groupId>org.eclipse.jetty.aggregate</groupId>
             <artifactId>*</artifactId>
+          </exclusion>
+          <exclusion>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.el</artifactId>
           </exclusion>
         </exclusions>
       </dependency>
@@ -1184,6 +1197,17 @@
     <repository>
       <id>confluent</id>
       <url>https://packages.confluent.io/maven/</url>
+    </repository>
+<!--    添加 chd 包的repository-->
+    <repository>
+      <id>cloudera</id>
+      <url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
     </repository>
   </repositories>
 

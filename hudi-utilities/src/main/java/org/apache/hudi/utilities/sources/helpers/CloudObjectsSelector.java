@@ -33,6 +33,7 @@ import com.amazonaws.services.sqs.model.Message;
 import com.amazonaws.services.sqs.model.ReceiveMessageRequest;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
@@ -108,7 +109,7 @@ public class CloudObjectsSelector {
    * @param record of object event
    * @return map of file attribute
    */
-  protected Map<String, Object> getFileAttributesFromRecord(JSONObject record) throws UnsupportedEncodingException {
+  protected Map<String, Object> getFileAttributesFromRecord(JSONObject record) throws UnsupportedEncodingException, JSONException {
     Map<String, Object> fileRecord = new HashMap<>();
     String eventTimeStr = record.getString(S3_MODEL_EVENT_TIME);
     long eventTime =

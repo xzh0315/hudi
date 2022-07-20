@@ -18,6 +18,7 @@
 
 package org.apache.hudi.common.table.log.block;
 
+import org.apache.hadoop.fs.FileSystem;
 import org.apache.hudi.avro.HoodieAvroWriteSupport;
 import org.apache.hudi.common.fs.inline.InLineFSUtils;
 import org.apache.hudi.common.fs.inline.InLineFileSystem;
@@ -108,8 +109,9 @@ public class HoodieParquetDataBlock extends HoodieDataBlock {
             Double.parseDouble(String.valueOf(0.1)));//HoodieStorageConfig.PARQUET_COMPRESSION_RATIO.defaultValue()));
 
     ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
-    try (FSDataOutputStream outputStream = new FSDataOutputStream(baos)) {
+//    kk-data-xzh:fix method of hadoop 3.0
+//    FileSystem.Statistics statistics = new FileSystem.Statistics( writerSchema.getName());
+    try (FSDataOutputStream outputStream = new FSDataOutputStream(baos,null)) {
       try (HoodieParquetStreamWriter<IndexedRecord> parquetWriter = new HoodieParquetStreamWriter<>(outputStream, avroParquetConfig)) {
         for (IndexedRecord record : records) {
           String recordKey = getRecordKey(record).orElse(null);

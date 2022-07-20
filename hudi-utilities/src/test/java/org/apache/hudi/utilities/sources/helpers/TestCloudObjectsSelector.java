@@ -27,6 +27,7 @@ import org.apache.hudi.utilities.testutils.CloudObjectTestUtils;
 import com.amazonaws.services.sqs.AmazonSQS;
 import com.amazonaws.services.sqs.model.Message;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -105,7 +106,7 @@ public class TestCloudObjectsSelector extends HoodieClientTestHarness {
   @ParameterizedTest
   @ValueSource(classes = {CloudObjectsSelector.class})
   public void testFileAttributesFromRecordShouldReturnsExpectOutput(Class<?> clazz)
-      throws IOException {
+          throws IOException, JSONException {
 
     CloudObjectsSelector selector =
         (CloudObjectsSelector) ReflectionUtils.loadClass(clazz.getName(), props);

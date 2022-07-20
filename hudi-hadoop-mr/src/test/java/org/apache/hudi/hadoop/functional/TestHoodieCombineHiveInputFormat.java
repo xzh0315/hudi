@@ -68,8 +68,8 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static org.apache.hadoop.hive.ql.exec.Utilities.HAS_MAP_WORK;
+//kk-data-xzh:fix method of hive2.11-cdh6.2.0
+//import static org.apache.hdoop.hive.ql.exec.Utilities.HAS_MAP_WORK;
 import static org.apache.hadoop.hive.ql.exec.Utilities.MAPRED_MAPPER_CLASS;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -141,7 +141,7 @@ public class TestHoodieCombineHiveInputFormat extends HoodieCommonTestHarness {
     Path[] partitionDirArray = new Path[partitionDirs.size()];
     partitionDirs.stream().map(p -> new Path(p.getPath())).collect(Collectors.toList()).toArray(partitionDirArray);
     FileInputFormat.setInputPaths(jobConf, partitionDirArray);
-    jobConf.set(HAS_MAP_WORK, "true");
+//    jobConf.set(HAS_MAP_WORK, "true");
     // The following config tells Hive to choose ExecMapper to read the MAP_WORK
     jobConf.set(MAPRED_MAPPER_CLASS, ExecMapper.class.getName());
     // setting the split size to be 3 to create one split for 3 file groups
@@ -225,7 +225,7 @@ public class TestHoodieCombineHiveInputFormat extends HoodieCommonTestHarness {
     jobConf = new JobConf(conf);
     // Add the paths
     FileInputFormat.setInputPaths(jobConf, partitionDir.getPath());
-    jobConf.set(HAS_MAP_WORK, "true");
+//    jobConf.set(HAS_MAP_WORK, "true");
     // The following config tells Hive to choose ExecMapper to read the MAP_WORK
     jobConf.set(MAPRED_MAPPER_CLASS, ExecMapper.class.getName());
     // setting the split size to be 3 to create one split for 3 file groups
@@ -298,7 +298,7 @@ public class TestHoodieCombineHiveInputFormat extends HoodieCommonTestHarness {
     jobConf = new JobConf(conf);
     // Add the paths
     FileInputFormat.setInputPaths(jobConf, partitionDir.getPath());
-    jobConf.set(HAS_MAP_WORK, "true");
+//    jobConf.set(HAS_MAP_WORK, "true");
     // The following config tells Hive to choose ExecMapper to read the MAP_WORK
     jobConf.set(MAPRED_MAPPER_CLASS, ExecMapper.class.getName());
     // set SPLIT_MAXSIZE larger  to create one split for 3 files groups
@@ -370,7 +370,7 @@ public class TestHoodieCombineHiveInputFormat extends HoodieCommonTestHarness {
     jobConf = new JobConf(conf);
     // Add the paths
     FileInputFormat.setInputPaths(jobConf, partitionDir.getPath());
-    jobConf.set(HAS_MAP_WORK, "true");
+//    jobConf.set(HAS_MAP_WORK, "true");
     // The following config tells Hive to choose ExecMapper to read the MAP_WORK
     jobConf.set(MAPRED_MAPPER_CLASS, ExecMapper.class.getName());
     // setting the split size to be 3 to create one split for 3 file groups
