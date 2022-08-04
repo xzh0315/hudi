@@ -255,8 +255,9 @@ object DataSourceWriteOptions {
   def translateSqlOptions(optParams: Map[String, String]): Map[String, String] = {
     var translatedOptParams = optParams
     // translate the api partitionBy of spark DataFrameWriter to PARTITIONPATH_FIELD
-    if (optParams.contains(SparkDataSourceUtils.PARTITIONING_COLUMNS_KEY)) {
-      val partitionColumns = optParams.get(SparkDataSourceUtils.PARTITIONING_COLUMNS_KEY)
+    val PARTITIONING_COLUMNS_KEY = "__partition_columns"
+    if (optParams.contains(PARTITIONING_COLUMNS_KEY)) {
+      val partitionColumns = optParams.get(PARTITIONING_COLUMNS_KEY)
         .map(SparkDataSourceUtils.decodePartitioningColumns)
         .getOrElse(Nil)
       val keyGeneratorClass = optParams.getOrElse(DataSourceWriteOptions.KEYGENERATOR_CLASS_NAME.key(),
